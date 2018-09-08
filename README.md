@@ -1,5 +1,5 @@
 ## mongoose教程
-mongoose连接数据库有两种方案第一种为使用connect连接，特点如下：
+### mongoose连接数据库有两种方案第一种为使用connect连接，特点如下：
 + 项目只是用一个数据库
 + 此种连接方式没有返回值
 + 连接对象需要使用mongoose.connection来获取
