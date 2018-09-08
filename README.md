@@ -24,6 +24,78 @@ var db       = mongoose.createConnection('mongodb://127.0.0.1:27017/myapp96',{ u
 
 ### 相比较于mysql来说,mongoose不需要建立表了，但是需要建立模型。
 + 建立模型需要用到mongoose.schema 方法;
-+ 建立完模型用model方法和数据库中的表关联;
-+ 
++ 建立完模型用model方法和数据库中的表关联;  
++ mysql使用时需要建立表,操作数据时需要用连接对象执行sql语句，
++ mongoose则可以直接操作模型或者数据实例;
+
+### mongoose 新增一条数据的方法有如下几种：
++ Model.create(数据对象,回调函数)
++ let newdata = new model(); newdata.save(回调函数)；
++ 插入大量数据,insertMany
+代码如下:
+~~~
+// 增加数据的第一种方式
+TestModel.create({age:"18"},(err,result)=>{
+    console.log(err.message);
+    console.log(result)
+})
+// 第二种方式:
+var newTestModel = new TestModel({
+    name:"张三",
+    age:'24'
+})
+newTestModel.save((err,result)=>{
+    console.log(err);
+    console.log(result)
+})
+
+// 第三种方式,插入大量数据
+TestModel.insertMany([
+    {name:'李四1',age:'23'},
+    {name:'李四2',age:'23'},
+    {name:'李四3',age:'23'},
+    {name:'李四4',age:'23'},
+    {name:'李四5',age:'23'},
+],(err,result)=>{
+    console.log(err);
+    console.log(result)
+})
+~~~
+这两种方式的区别:(待定);
++ 第二种相较于第一种先生成数据的id,然后在存储
++ 不知道这两种是否都会触发钩子函数
++ 第三种适合插入大量数据
+
+### 查询数据有如下几种方式:
+
+
+
+
+
+
+### 生命周期钩子函数
+##### pre 和 post pre在数据库执行动作之前,post在数据库执行动作之后;
+~~~
+TestSchema.pre('save',(next)=>{
+    console.log("pre-save")
+    next()
+})
+TestSchema.post('save',(next)=>{
+    console.log("post-save")
+    console.log("next",next);
+    next.name = "123";
+})
+
+~~~
+
+##### 执行顺序为
++ 1、先执行pre的函数;
++ 2、然后进行存储动作;（过程不可见）
++ 3、存储完成后执行post的回调;
++ 4、执行save的回调,此时回调的结果已经被post处理过;
+#### 应用场景
+ pre用户注册存储密码加密后存储;post 查询用户,查询完成后设置一些属性;
+
+####　注意　create和save都会触发 pre('save') 而 insertMany不会触发;
+
 
