@@ -1,4 +1,4 @@
-const TestModel = require('./models/1connect.js');
+const TestModel = require('./models/test1model.js');
 
 // // 增加数据的第一种方式
 // TestModel.create({name:"小龙2",age:"18"},(err,result)=>{

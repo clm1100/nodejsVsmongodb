@@ -1,5 +1,5 @@
-## mongoose教程
-### mongoose连接数据库有两种方案第一种为使用connect连接，特点如下：
+#### mongoose教程
+#### mongoose连接数据库有两种方案第一种为使用connect连接，特点如下：
 + 项目只是用一个数据库
 + 此种连接方式没有返回值
 + 连接对象需要使用mongoose.connection来获取
@@ -12,23 +12,23 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 ~~~
 
-### 另外一种连接方式使用createConnection连接：
+#### 另外一种连接方式使用createConnection连接：
 ~~~
 var mongoose = require('mongoose');
 var db       = mongoose.createConnection('mongodb://127.0.0.1:27017/myapp96',{ useNewUrlParser: true }); 
 
 ~~~
-### 特点如下：
+#### 特点如下：
 + 此种连接有返回值,其返回值即连接对象
 + 此种连接方式适合项目使用多个数据库
 
-### 相比较于mysql来说,mongoose不需要建立表了，但是需要建立模型。
+#### 相比较于mysql来说,mongoose不需要建立表了，但是需要建立模型。
 + 建立模型需要用到mongoose.schema 方法;
 + 建立完模型用model方法和数据库中的表关联;  
 + mysql使用时需要建立表,操作数据时需要用连接对象执行sql语句，
 + mongoose则可以直接操作模型或者数据实例;
 
-### mongoose 新增一条数据的方法有如下几种：
+#### mongoose 新增一条数据的方法有如下几种：
 + Model.create(数据对象,回调函数)
 + let newdata = new model(); newdata.save(回调函数)；
 + 插入大量数据,insertMany
@@ -63,10 +63,10 @@ TestModel.insertMany([
 ~~~
 这两种方式的区别:(待定);
 + 第二种相较于第一种先生成数据的id,然后在存储
-+ 不知道这两种是否都会触发钩子函数
-+ 第三种适合插入大量数据
++ 不知道这两种是否都会触发钩子函数 都会触发 save的生命周期函数
++ 第三种适合插入大量数据，会触发insertMany钩子函数
 
-### 查询数据有如下几种方式:
+#### 查询数据有如下几种方式:
 
 + 直接查询
   ~~~
@@ -102,11 +102,11 @@ model.find({}, callback);
 + findOne(undefined)、findOne({ _id: undefined })等价于 findOne({}),返回任意一条数据.
 + findById(undefined) 等价于 findOne({ _id: null })
 
-#### population的使用
+#### 关联文档 population的使用
 
 
 #### 生命周期钩子函数
-##### pre 和 post pre在数据库执行动作之前,post在数据库执行动作之后;
+#### pre 和 post pre在数据库执行动作之前,post在数据库执行动作之后;
 ~~~
 TestSchema.pre('save',(next)=>{
     console.log("pre-save")
@@ -120,7 +120,7 @@ TestSchema.post('save',(next)=>{
 
 ~~~
 
-##### 执行顺序为
+#### 执行顺序为
 + 1、先执行pre的函数;
 + 2、然后进行存储动作;（过程不可见）
 + 3、存储完成后执行post的回调;
