@@ -103,7 +103,20 @@ model.find({}, callback);
 + findById(undefined) 等价于 findOne({ _id: null })
 
 #### 关联文档 population的使用
++ 第一个引用字段的名称,多个用空格分隔
++ select: 填充引用 document 中的哪些字段
+  ~~~
+    TestModel.find({}).populate("user",{name:1,_id:0}).then((data)=>{
+        console.log(data)
+    })
+  ~~~
++ 
 
+
+#### 如何构建合理的构建模型,如图：这样做可以很好的规避关系文档的引用错误;
+<img src = './1.jpg'>
+
+这样生成模型的动作全部在一个文件中生成,不会出现引用错误;
 
 #### 生命周期钩子函数
 #### pre 和 post pre在数据库执行动作之前,post在数据库执行动作之后;
