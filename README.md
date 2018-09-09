@@ -68,12 +68,44 @@ TestModel.insertMany([
 
 ### 查询数据有如下几种方式:
 
++ 直接查询
+  ~~~
+model.find({}, callback);
+
+ model.find({},field,callback);
+过滤查询,参数2: {‘name’:1, ‘age’:0} 查询文档的返回结果包含name , 不包含age.(_id默认是1)
+
+ model.find({},null,{limit:20});
+过滤查询,参数3: 游标操作 limit限制返回结果数量为20个,如不足20个则返回所有.
+
+ model.findOne({}, callback);
+查询找到的第一个文档
+
+ model.findById(‘obj._id’, callback);
+查询找到的第一个文档,同上. 但是只接受 __id 的值查询
+ 
+#### find查询的时候可以设置如下参数：
++ 第一个参数 是查询条件是一个对象
+   * 查询条件还可以有很多配置：**MyModel.find({ name: 'john', age: { $gte: 18 }});**
+   * 
++ 第二个参数 是查询结果返回的字段,可以是个字符串，也可以是一个对象：
+  > query.select({ a: 1, b: 1 });
+    query.select({ c: 0, d: 0 });
+    query.select('a b');
+    exclude c and d, include other fields
+    query.select('-c -d');
++ 第三个参数 设置查询结果的返回条件;常用的如limit skip sort 
++ 第四个参数 为回调函数;
+
+#### findOne与findById使用注意事项：
++ findById(id)等价于findOne({ _id: id })
++ findOne(undefined)、findOne({ _id: undefined })等价于 findOne({}),返回任意一条数据.
++ findById(undefined) 等价于 findOne({ _id: null })
+
+#### population的使用
 
 
-
-
-
-### 生命周期钩子函数
+#### 生命周期钩子函数
 ##### pre 和 post pre在数据库执行动作之前,post在数据库执行动作之后;
 ~~~
 TestSchema.pre('save',(next)=>{
@@ -96,6 +128,6 @@ TestSchema.post('save',(next)=>{
 #### 应用场景
  pre用户注册存储密码加密后存储;post 查询用户,查询完成后设置一些属性;
 
-####　注意　create和save都会触发 pre('save') 而 insertMany不会触发;
+#### 注意　create和save都会触发 pre('save') 而 insertMany不会触发;
 
 
