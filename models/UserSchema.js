@@ -6,4 +6,9 @@ const userSchema = new Schema({
 // const userModel = db.model('users',userSchema);
 
 // module.exports = userModel;
+userSchema.pre("remove",(next)=>{
+    console.log("remove");
+    next()
+})
+
 module.exports = userSchema;
