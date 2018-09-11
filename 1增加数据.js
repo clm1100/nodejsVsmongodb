@@ -18,11 +18,11 @@ const {TestModel,UserModel} = require('./models/orm.js')
 // })
 // 第三种方式,插入大量数据
 UserModel.insertMany([
-    {name:'李四1'},
-    {name:'李四2'},
-    {name:'李四3'},
-    {name:'李四4'},
-    {name:'李四5'},
+    {name:'李四1',age:Math.round(Math.random()*20)},
+    {name:'李四2',age:Math.round(Math.random()*20)},
+    {name:'李四3',age:Math.round(Math.random()*20)},
+    {name:'李四4',age:Math.round(Math.random()*20)},
+    {name:'李四5',age:Math.round(Math.random()*20)},
 ],(err,result)=>{
    if(err) return  console.log(err);
     console.log(result.length)
