@@ -4,6 +4,9 @@ const log = (err,data)=>{console.log(err);console.log(data)}
 UserModel.remove({},(err,data)=>{
     log(err,data);
 })
+UserModel.findByIdAndRemove(id,(err,data)=>{
+    console.log(data);
+})
 // UserModel.deleteOne({"_id" : "5b969ea503e9181330f71b77"},(err,data)=>{
 //     console.log(err);
 //     console.log(data);
