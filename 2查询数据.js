@@ -1,9 +1,4 @@
-// const TestSchema = require('./models/TestSchema.js');
-// const UserSchema = require('./models/UserSchema.js');
-// const db = require('./models/1db.js');
-// const TestModel = db.model("test1",TestSchema)
-// const UserModel = db.model('users',UserSchema)
-const {TestModel,UserModel} = require('./models/orm.js')
+const {TestModel,UserModel,FatherModel} = require('./models/orm.js')
 
 // UserModel.find({}).populate("user",{name:1,_id:0}).then((data)=>{
 //     console.log(data)
@@ -42,9 +37,9 @@ const {TestModel,UserModel} = require('./models/orm.js')
 //     console.log(data)
 // })
 // 查询存在age字段，但age为null的人
-UserModel.find({age:{$in:[null],$exists:true}},(err,data)=>{
-    console.log(data)
-})
+// UserModel.find({age:{$in:[null],$exists:true}},(err,data)=>{
+//     console.log(data)
+// })
 // UserModel.findOne({},(err,data)=>{
 //     data.age= null;
 //     data.save();
@@ -58,3 +53,14 @@ UserModel.find({age:{$in:[null],$exists:true}},(err,data)=>{
 // UserModel.find({},{name:1,_id:0}).skip(2).limit(2).populate("user",{name:1,_id:0}).then((data)=>{
 //     console.log(data)
 // })
+
+// FatherModel.find({"child.sex":"男"},(err,data)=>{
+//     console.log(err);
+//     console.log(data);
+// })
+// let obj = FatherModel.child.id("5b9bdc050e9f212110ad1373")
+FatherModel.findOne({},(err,father)=>{
+   let o =  father.child.id("5b9bdc050e9f212110ad1373");
+   console.log(o)
+})
+// console.log(obj);
