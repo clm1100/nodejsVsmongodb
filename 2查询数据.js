@@ -59,8 +59,35 @@ const {TestModel,UserModel,FatherModel} = require('./models/orm.js')
 //     console.log(data);
 // })
 // let obj = FatherModel.child.id("5b9bdc050e9f212110ad1373")
-FatherModel.findOne({},(err,father)=>{
-   let o =  father.child.id("5b9bdc050e9f212110ad1373");
-   console.log(o)
+// FatherModel.findOne({},(err,father)=>{
+//    let o =  father.child.id("5b9bdc050e9f212110ad1373");
+//    console.log(o)
+// })
+// 查询有三个还在的父亲
+// 查询有三岁孩子上的父亲
+// 
+// 查询有一个孩子的父亲
+// FatherModel.find({"child":{"$size":1}},(err,data)=>{
+//     console.log(err);
+//     console.log(data);
+// })
+
+FatherModel.find({"$where":function(){
+    if(this.child.length>=4){
+        return true
+    }else{
+        return false
+    }
+}},(err,data)=>{
+    console.log(err);
+    console.log(data)
 })
+
+// 尽量少用$where
+// 不能查询大于数组长度的信息,但可以通过变式来查询,设计一个计算数组长度的字段,每次创建数据,或者修改数据,根据数组长度修改该字段即可。
+
+
+
+
+
 // console.log(obj);

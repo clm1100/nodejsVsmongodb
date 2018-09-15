@@ -43,7 +43,7 @@ function gender(){
 
 
 FatherModel.insertMany([
-    {name:name1(),age:age1(),child:[{name:"小丽",sex:gender()},{name:"小强",sex:gender()}]},
+    {name:name1(),age:age1(),child:[{name:"小丽",sex:gender()},{name:"小丽",sex:gender()},{name:"小丽",sex:gender()},{name:"小丽",sex:gender()},{name:"小强",sex:gender()}]},
     {name:name1(),age:age1(),child:[{name:"小丽",sex:gender()},{name:"小强",sex:gender()}]},
     {name:name1(),age:age1(),child:[{name:"小丽",sex:gender()},{name:"小强",sex:gender()}]},
     {name:name1(),age:age1(),child:[{name:"小丽",sex:gender()},{name:"小强",sex:gender()}]},
