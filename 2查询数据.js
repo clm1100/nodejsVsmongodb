@@ -72,20 +72,27 @@ const {TestModel,UserModel,FatherModel} = require('./models/orm.js')
 //     console.log(data);
 // })
 
-FatherModel.find({"$where":function(){
-    if(this.child.length>=4){
-        return true
-    }else{
-        return false
-    }
-}},(err,data)=>{
-    console.log(err);
-    console.log(data)
-})
+// FatherModel.find({"$where":function(){
+//     if(this.child.length>=4){
+//         return true
+//     }else{
+//         return false
+//     }
+// }},(err,data)=>{
+//     console.log(err);
+//     console.log(data)
+// })
 
 // 尽量少用$where
 // 不能查询大于数组长度的信息,但可以通过变式来查询,设计一个计算数组长度的字段,每次创建数据,或者修改数据,根据数组长度修改该字段即可。
 
+FatherModel.find({"child":{
+    "$elemMatch":{
+        "name":"张三1"
+    }
+}}).then((data)=>{
+    console.log(data);
+})
 
 
 

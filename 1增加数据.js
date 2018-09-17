@@ -36,17 +36,18 @@ function age1 (){
     return Math.ceil(Math.random()*10);
 }
 function gender(){
-    return (Math.random()-0.5)>0?"男":"女"
+    // return (Math.random()-0.5)>0?"男":"女"
+    return "男"
 }
 
 
 
 
 FatherModel.insertMany([
-    {name:name1(),age:age1(),child:[{name:"小丽",sex:gender()},{name:"小丽",sex:gender()},{name:"小丽",sex:gender()},{name:"小丽",sex:gender()},{name:"小强",sex:gender()}]},
-    {name:name1(),age:age1(),child:[{name:"小丽",sex:gender()},{name:"小强",sex:gender()}]},
-    {name:name1(),age:age1(),child:[{name:"小丽",sex:gender()},{name:"小强",sex:gender()}]},
-    {name:name1(),age:age1(),child:[{name:"小丽",sex:gender()},{name:"小强",sex:gender()}]},
+    {name:name1(),age:age1(),child:[{name:"张三",sex:gender()},{name:"张三1",sex:gender()},{name:"张三",sex:gender()},{name:"张三",sex:gender()},{name:"小强",sex:gender()}]},
+    // {name:name1(),age:age1(),child:[{name:"张三",sex:gender()},{name:"张三",sex:gender()}]},
+    // {name:name1(),age:age1(),child:[{name:"张三",sex:gender()},{name:"张三",sex:gender()}]},
+    // {name:name1(),age:age1(),child:[{name:"张三",sex:gender()},{name:"张三",sex:gender()}]},
 
 ],(err,data)=>{
     console.log(err);
