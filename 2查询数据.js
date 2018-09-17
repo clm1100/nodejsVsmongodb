@@ -94,7 +94,7 @@ FatherModel.find({"child":{
     console.log(data);
 })
 
-
+// $all和$in的区别
 
 
 // console.log(obj);
