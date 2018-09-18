@@ -36,6 +36,6 @@ const {TestModel,UserModel,FatherModel} = require('./models/orm.js')
 // FatherModel.updateMany({},{$pull:{"child":{"$size":2}}},(err,data)=>{
 //     console.log(data);
 // })
-FatherModel.remove({},(err,data)=>{console.log(data)})
+// FatherModel.remove({},(err,data)=>{console.log(data)})
 
 // 复杂的修改语句,

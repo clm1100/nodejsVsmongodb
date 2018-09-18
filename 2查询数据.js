@@ -86,15 +86,22 @@ const {TestModel,UserModel,FatherModel} = require('./models/orm.js')
 // 尽量少用$where
 // 不能查询大于数组长度的信息,但可以通过变式来查询,设计一个计算数组长度的字段,每次创建数据,或者修改数据,根据数组长度修改该字段即可。
 
-FatherModel.find({"child":{
-    "$elemMatch":{
-        "name":"张三1"
-    }
-}}).then((data)=>{
-    console.log(data);
-})
+// FatherModel.find({"child":{
+//     "$elemMatch":{
+//         "name":"张三1"
+//     }
+// }}).then((data)=>{
+//     console.log(data);
+// })
 
 // $all和$in的区别
 
+// 查询数组;
+// slice的用法,
+// FatherModel.find().slice('child',1).then((data)=>{
+//     console.log(data)
+// })
 
-// console.log(obj);
+FatherModel.find().slice('child',[0,12]).then((data)=>{
+    console.log(data)
+})
