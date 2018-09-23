@@ -127,7 +127,7 @@ TestModel.find({}).populate("user",{name:1,_id:0}).then((data)=>{
 
 **注意：删除好像不会触发钩子函数。这点不确认，待确认。**
 
-<font color=#0099ff size=7 face="黑体">注意：删除好像不会触发钩子函数。这点不确认，待确认。</font>
+<font color=#0099ff size=6 face="黑体">注意：删除好像不会触发钩子函数。这点不确认，待确认。</font>
 
 
 ### 修改数据的操作:
