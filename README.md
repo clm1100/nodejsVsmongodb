@@ -126,11 +126,9 @@ TestModel.find({}).populate("user",{name:1,_id:0}).then((data)=>{
 5. deleteMany 删除所有符合条件的
 
 **注意：删除好像不会触发钩子函数。这点不确认，待确认。**
+
 <font color=#0099ff size=7 face="黑体">注意：删除好像不会触发钩子函数。这点不确认，待确认。</font>
 
----------------------
-
-本文来自 想要养只猫 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/liuhw4598/article/details/78279737?utm_source=copy 
 
 ### 修改数据的操作:
 
