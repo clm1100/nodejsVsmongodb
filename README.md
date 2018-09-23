@@ -124,7 +124,9 @@ model.find({}, callback);
 这样生成模型的动作全部在一个文件中生成,不会出现引用错误;
 
 #### 生命周期钩子函数
-#### pre 和 post pre在数据库执行动作之前,post在数据库执行动作之后;
+#### pre 和 post的区别
++ pre在数据库执行动作之前,对数据进行数据库操作之前。
++ post在数据库执行动作之后,在post中拿到的数据，是在数据库动作操作完成之后。
 ~~~
 TestSchema.pre('save',(next)=>{
     console.log("pre-save")
