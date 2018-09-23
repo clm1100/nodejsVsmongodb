@@ -72,7 +72,8 @@ TestModel.insertMany([
 #### 查询数据有如下几种方式:
 
 + 直接查询
-  ~~~
+
+~~~
 model.find({}, callback);
 
  model.find({},field,callback);
@@ -86,7 +87,7 @@ model.find({}, callback);
 
  model.findById(‘obj._id’, callback);
 查询找到的第一个文档,同上. 但是只接受 __id 的值查询
- ~~~
+~~~
 
 #### find查询的时候可以设置如下参数：
 + 第一个参数 是查询条件是一个对象
