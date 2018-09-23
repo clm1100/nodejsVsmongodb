@@ -66,7 +66,7 @@ TestModel.insertMany([
 这两种方式的区别:(待定);
 + 第二种相较于第一种先生成数据的id,然后在存储
 + 不知道这两种是否都会触发钩子函数 都会触发 save的生命周期函数
-    + 第一种和第二种都会触发save的钩子函数。
+    + **第一种和第二种都会触发save的钩子函数**。
 + 第三种适合插入大量数据，会触发insertMany钩子函数
 
 #### 查询数据有如下几种方式:
@@ -86,17 +86,18 @@ model.find({}, callback);
 
  model.findById(‘obj._id’, callback);
 查询找到的第一个文档,同上. 但是只接受 __id 的值查询
- 
+ ~~~
+
 #### find查询的时候可以设置如下参数：
 + 第一个参数 是查询条件是一个对象
    * 查询条件还可以有很多配置：**MyModel.find({ name: 'john', age: { $gte: 18 }});**
    * 
 + 第二个参数 是查询结果返回的字段,可以是个字符串，也可以是一个对象：
   > query.select({ a: 1, b: 1 });
-    query.select({ c: 0, d: 0 });
-    query.select('a b');
-    exclude c and d, include other fields
-    query.select('-c -d');
+  > query.select({ c: 0, d: 0 });
+  > query.select('a b');
+  > exclude c and d, include other fields
+  > query.select('-c -d');
 + 第三个参数 设置查询结果的返回条件;常用的如limit skip sort 
 + 第四个参数 为回调函数;
 
@@ -105,7 +106,7 @@ model.find({}, callback);
 + findOne(undefined)、findOne({ _id: undefined })等价于 findOne({}),返回任意一条数据.
 + findById(undefined) 等价于 findOne({ _id: null })
 
-#### 关联文档 population的使用
+#### 关联文档 population的使用,**populate(关联))**
 + 第一个引用字段的名称,多个用空格分隔
 + select: 填充引用 document 中的哪些字段
   ~~~
@@ -117,7 +118,7 @@ model.find({}, callback);
 
 
 #### 如何构建合理的构建模型,如图：这样做可以很好的规避关系文档的引用错误;
-<img src = './1.jpg'>
+<img src = './1.jpg' height="50%">
 
 这样生成模型的动作全部在一个文件中生成,不会出现引用错误;
 
