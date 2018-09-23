@@ -104,30 +104,28 @@ model.find({}, callback);
 + 第四个参数 为回调函数;
 
 #### findOne与findById使用注意事项：
-+ findById(id)等价于findOne({ _id: id })
-+ findOne(undefined)、findOne({ _id: undefined })等价于 findOne({}),返回任意一条数据.
-+ findById(undefined) 等价于 findOne({ _id: null })
+1. findById(id)等价于findOne({ _id: id })
+2. findOne(undefined)、findOne({ _id: undefined })等价于 findOne({}),返回任意一条数据.
+3. findById(undefined) 等价于 findOne({ _id: null })
 
 #### 关联文档 population的使用,**populate(关联))**
-+ 第一个引用字段的名称,多个用空格分隔
-+ select: 填充引用 document 中的哪些字段
-  ~~~
-    TestModel.find({}).populate("user",{name:1,_id:0}).then((data)=>{
-        console.log(data)
-    })
-  ~~~
+1. 第一个参数为字符串,具体内容为关联字段,多个关联字段用空格分隔
+2. 第二个参数为选择显示关联数据的哪些字段，默认全显示，使用语法如下，用0、1表示显示与否
+**注意： 如果关联的字段中还有关联字段该怎么查询呢,这里需要借助一个插件，用到了再去考虑**
+~~~
+TestModel.find({}).populate("user",{name:1,_id:0}).then((data)=>{
+    console.log(data)
+})
+~~~
 
 ### 删除数据的操作，删除的方法有如下几种：
 1. remove 已经废弃掉了
-    1. 测试写法
-        1. 在测试
-            1. 次数多发的是
 2. findByIdAndRemove
 3. findOneAndRemove
 4. deleteOne 符合条件的只删除一条
 5. deleteMany 删除所有符合条件的
 
-#### 注意：删除好像不会触发钩子函数。这点不确认，待确认。
+**注意：删除好像不会触发钩子函数。这点不确认，待确认。**
 
 ### 修改数据的操作:
 
