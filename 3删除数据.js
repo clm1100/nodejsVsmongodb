@@ -7,6 +7,9 @@ UserModel.remove({},(err,data)=>{
 UserModel.findByIdAndRemove(id,(err,data)=>{
     console.log(data);
 })
+UserModel.findOneAndRemove({_id:id},(err,data)=>{
+
+})
 // UserModel.deleteOne({"_id" : "5b969ea503e9181330f71b77"},(err,data)=>{
 //     console.log(err);
 //     console.log(data);
