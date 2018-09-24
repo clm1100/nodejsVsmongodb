@@ -13,10 +13,10 @@ const {TestModel,UserModel,FatherModel} = require('./models/orm.js')
 //     console.log(data)
 // })
 // // 年龄小于10岁
-// UserModel.find({age:{$gte:10}}).populate("user",{name:1,_id:0}).then((data)=>{
+// UserModel.find({age:{$lte:10}}).populate("user",{name:1,_id:0}).then((data)=>{
 //     console.log(data)
 // })
-//年龄大于等与2对小于等于4岁
+// 年龄大于等与2对小于等于4岁
 // UserModel.find({age:{$gte:2,$lte:4}},{_id:0,age:1,name:1}).populate("user",{name:1,_id:0}).then((data)=>{
 //     console.log(data)
 // })
@@ -72,16 +72,16 @@ const {TestModel,UserModel,FatherModel} = require('./models/orm.js')
 //     console.log(data);
 // })
 
-// FatherModel.find({"$where":function(){
-//     if(this.child.length>=4){
-//         return true
-//     }else{
-//         return false
-//     }
-// }},(err,data)=>{
-//     console.log(err);
-//     console.log(data)
-// })
+FatherModel.find({"$where":function(){
+    if(this.child.length>=4){
+        return true
+    }else{
+        return false
+    }
+}},(err,data)=>{
+    console.log(err);
+    console.log(data)
+})
 
 // 尽量少用$where
 // 不能查询大于数组长度的信息,但可以通过变式来查询,设计一个计算数组长度的字段,每次创建数据,或者修改数据,根据数组长度修改该字段即可。

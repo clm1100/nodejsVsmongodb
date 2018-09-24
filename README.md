@@ -117,6 +117,87 @@ TestModel.find({}).populate("user",{name:1,_id:0}).then((data)=>{
     console.log(data)
 })
 ~~~
+##### 查询案例总结:
+1. 年龄大于等于10岁的用户
+~~~
+ UserModel.find({age:{$gte:10}}).populate("user",{name:1,_id:0}).then((data)=>{
+   console.log(data)
+})
+~~~
+2. 年龄小于等于10岁
+~~~
+UserModel.find({age:{$lte:10}}).populate("user",{name:1,_id:0}).then((data)=>{
+    console.log(data)
+})
+~~~
+3. 年龄大于等与2对小于等于4岁
+~~~
+UserModel.find({age:{$gte:2,$lte:4}}).populate("user",{name:1,_id:0}).then((data)=>{
+    console.log(data)
+})
+~~~
+4. 或查询 OR:
+~~~
+ UserModel.find({age:{"$in":[2,4]}},(err,data)=>{
+     if(err) return console.log(err);
+     console.log(data)
+ })
+~~~
+5. 查找name值为李四3或者age为2
+~~~
+UserModel.find({$or:[{age:2},{name:'李四3'}]},(err,data)=>{
+        if(err) return console.log(err);
+    console.log(data)
+})
+~~~
+6. 查询存在age字段的人
+~~~
+UserModel.find({age:{$exists:true}},(err,data)=>{
+    console.log(data)
+})
+~~~
+7. 查询存在age字段，但age为null的人
+UserModel.find({age:{$in:[null],$exists:true}},(err,data)=>{
+    console.log(data)
+})
+
+8. 查询孩子有男孩的父亲
+~~~
+FatherModel.find({"child.sex":"男"},(err,data)=>{
+    console.log(err);
+    console.log(data);
+})
+~~~
+9. 查询有一个孩子的父亲
+~~~
+FatherModel.find({"child":{"$size":1}},(err,data)=>{
+    console.log(err);
+    console.log(data);
+})
+~~~
+10. 用$where查询
+~~~
+FatherModel.find({"$where":function(){
+    if(this.child.length>=4){
+        return true
+    }else{
+        return false
+    }
+}},(err,data)=>{
+    console.log(err);
+    console.log(data)
+})
+~~~
+
+11. 疑惑$all和$in的区别
+12.  slice的用法,查询出的数据，返回的数据遵循slice的规则。
+~~~
+ FatherModel.find().slice('child',1).then((data)=>{
+     console.log(data)
+ })
+~~~
+
+
 
 ### 删除数据的操作，删除的方法有如下几种：
 1. remove 已经废弃掉了
