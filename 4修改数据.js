@@ -31,7 +31,6 @@ const {TestModel,UserModel,FatherModel} = require('./models/orm.js')
 //         console.log(data)
 //     })
 // })
-
 // $pull的使用方法,此方法操纵的是数组,{$pull:"需要删除的数组项"}
 // FatherModel.updateMany({},{$pull:{"child":{"$size":2}}},(err,data)=>{
 //     console.log(data);
