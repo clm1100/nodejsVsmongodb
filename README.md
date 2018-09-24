@@ -131,6 +131,12 @@ TestModel.find({}).populate("user",{name:1,_id:0}).then((data)=>{
 
 
 ### 修改数据的操作:
+1. update
+2. findByIdAndUpdate
+3. findOneAndUpdate
+4. updateOne
+5. updateMany
+6. 查询完成后再去修改,修改完成后在保存。
 
 #### 如何构建合理的构建模型,如图：这样做可以很好的规避关系文档的引用错误;
 <img src = './1.jpg' style="height:60%">
