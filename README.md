@@ -157,9 +157,11 @@ UserModel.find({age:{$exists:true}},(err,data)=>{
 })
 ~~~
 7. 查询存在age字段，但age为null的人
+~~~
 UserModel.find({age:{$in:[null],$exists:true}},(err,data)=>{
     console.log(data)
 })
+~~~
 
 8. 查询孩子有男孩的父亲
 ~~~
